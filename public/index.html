@@ -63,9 +63,10 @@
 			<form name="addForm" novalidate>
 				<div class="input-field col s12">
 					<input id="username" type="text" class="validate" ng-model="formData.username" required>
-					<label for="username">Username</label>
+					<label id="usernameLabel" for="username">Username</label>
 				</div>
 				<div class="input-field col s12">
+					<label>Gender</label><br>
 					<p>
 						<input name="optionsRadio" id="radioMale" value="Male" type="radio" ng-model="formData.gender" required>
 						<label for="radioMale">Male</label>
@@ -77,21 +78,16 @@
 				</div>
 				<div class="input-field col s12">
 					<input id="education" type="text" class="validate" ng-model="formData.education" required>
-					<label for="education">Education</label>
+					<label id="educationLabel" for="education">Education</label>
 				</div>
 				<div class="input-field col s12">
 					<input id="campus" type="text" class="validate" ng-model="formData.campus" required>
-					<label for="campus">Campus</label>
+					<label id="campusLabel" for="campus">Campus</label>
 				</div>
 				<div class="input-field col s12">
-					<input id="latitude" type="text" class="validate" ng-model="formData.latitude" required>
-					<label for="latitude">Latitude</label>
+					<input id="location" type="text" class="validate" ng-click="selectLocation()" ng-model="formData.location" required>
+					<label id="locationLabel" for="location">Location</label>
 				</div>
-				<div class="input-field col s12">
-					<input id="longitude" type="text" class="validate" ng-model="formData.longitude" required>
-					<label for="longitude">Longitude</label>
-				</div>
-				<!--</form>-->
 			</div>
 			<div class="modal-footer">
 				<a href="#" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a>

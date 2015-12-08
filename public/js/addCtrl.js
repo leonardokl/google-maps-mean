@@ -9,18 +9,15 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
     var lat = 0;
     var long = 0;
 
-    // Set initial coordinates to the center of the US
-    //$scope.formData.latitude = -9.7213276;
-    //$scope.formData.longitude = -36.4111439;
-
     // Functions
     // ----------------------------------------------------------------------------
 	$rootScope.$on("clicked", function(){
 
 		// Run the gservice functions associated with identifying coordinates
 		$scope.$apply(function(){
-			$scope.formData.latitude = parseFloat(gservice.clickLat).toFixed(3);
-			$scope.formData.longitude = parseFloat(gservice.clickLong).toFixed(3);
+			lat = parseFloat(gservice.clickLat).toFixed(3);
+			long = parseFloat(gservice.clickLong).toFixed(3);
+			$scope.formData.location = gservice.address;
 		});
 	});
     // Creates a new user based on the form fields
@@ -32,19 +29,17 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
             gender: $scope.formData.gender,
             education: $scope.formData.education,
             campus: $scope.formData.campus,
-            location: [$scope.formData.longitude, $scope.formData.latitude]
+            //location: [$scope.formData.longitude, $scope.formData.latitude]
+			address: $scope.formData.location,
+			location: [long, lat]
         };
 
         // Saves the user data to the db
         $http.post('/api/users', userData)
             .success(function (data) {
                 // Once complete, clear the form (except location)
-                $scope.formData.username = "";
-                $scope.formData.gender = "";
-				$scope.formData.campus = "";
-				$scope.formData.education = "";
-
-				gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
+                cleanForm();
+				gservice.refresh(lat, long);
 				$('#modal1').closeModal();
 				Materialize.toast('User created!', 4000);
             })
@@ -53,4 +48,26 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
                 console.error('Error: ' + data);
             });
     };
+
+	$scope.selectLocation = function() {
+		$('#modal1').closeModal();
+		Materialize.toast('Select the location', 4000);
+		gservice.selectLocation();
+	}
+
+	var cleanForm = function() {
+		$scope.formData.username = "";
+		$scope.formData.gender = "";
+		$scope.formData.campus = "";
+		$scope.formData.education = "";
+		$scope.formData.location = "";
+		$("#usernameLabel").removeClass();
+		$("#username").removeClass();
+		$("#campusLabel").removeClass();
+		$("#campus").removeClass();
+		$("#educationLabel").removeClass();
+		$("#education").removeClass();
+		$("#locationLabel").removeClass();
+		$("#usernameLabel").removeClass();
+	};
 });
