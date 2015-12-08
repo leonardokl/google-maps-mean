@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html ng-app="mapApp">
+<head>
+	<meta charset="utf-8">
+	<title>Mean Map</title>
+	<meta name="description" content="An example demonstrating Google Map integration with MEAN Apps">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- CSS -->
+	<link type="text/css" rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.css"  media="screen,projection"/>
+	<link rel="stylesheet" href="css/style.css"/>
+
+	<!-- Google Maps API -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAodoiM2iFRuo4bgaYFwoOSYPtWMSkASnY"></script>
+	<!-- Modernizr -->
+	<script src="bower_components/modernizr/bin/modernizr"></script>
+	<!-- JS Source -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="bower_components/Materialize/dist/js/materialize.min.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+	<!-- Angular Scripts -->
+	<script src="js/app.js"></script>
+	<script src="js/addCtrl.js"></script>
+	<script src="js/gservice.js"></script>
+
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body ng-controller="addCtrl">
+	<nav>
+		<div class="nav-wrapper container">
+			<a href="#" class="brand-logo">MEAN Map</a>
+			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+			</ul>
+			<ul class="side-nav" id="mobile-demo">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div id="map-container">
+		<div id="map"></div>
+	</div>
+
+	<div class="fixed-action-btn" >
+		<a class="waves-effect waves-light modal-trigger btn-floating btn-large red" href="#modal1">
+			<i class="large material-icons">add</i>
+		</a>
+	</div>
+
+	<!-- Modal Structure -->
+	<div id="modal1" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<h4>Create User</h4>
+			<form name="addForm" novalidate>
+				<div class="input-field col s12">
+					<input id="username" type="text" class="validate" ng-model="formData.username" required>
+					<label for="username">Username</label>
+				</div>
+				<div class="input-field col s12">
+					<p>
+						<input name="optionsRadio" id="radioMale" value="Male" type="radio" ng-model="formData.gender" required>
+						<label for="radioMale">Male</label>
+					</p>
+					<p>
+						<input name="optionsRadio" id="radioFemale" value="Female" type="radio" ng-model="formData.gender">
+						<label for="radioFemale">Female</label>
+					</p><br>
+				</div>
+				<div class="input-field col s12">
+					<input id="education" type="text" class="validate" ng-model="formData.education" required>
+					<label for="education">Education</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="campus" type="text" class="validate" ng-model="formData.campus" required>
+					<label for="campus">Campus</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="latitude" type="text" class="validate" ng-model="formData.latitude" required>
+					<label for="latitude">Latitude</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="longitude" type="text" class="validate" ng-model="formData.longitude" required>
+					<label for="longitude">Longitude</label>
+				</div>
+				<!--</form>-->
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a>
+				<a href="#" class="modal-action waves-effect waves-green btn-flat" ng-click="createUser()" ng-disabled="addForm.$invalid">Submit</a>
+			</div></form>
+		</div>
+
+		<script>
+		//Materialize.toast('I am a toast!', 4000);
+		$(".button-collapse").sideNav();
+		$(document).ready(function(){
+			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+			$('.modal-trigger').leanModal();
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+nav {
+	background-color: #209E34;
+}
+
+.fixed-action-btn {
+	bottom: 45px;
+	right: 24px;
+}
+
+#map-container {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+}
+
+#map {
+	height: 100%;
+	width: 100%;
+}

@@ -1,0 +1,27 @@
+{
+  "name": "google-maps-mean",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "mean"
+  ],
+  "author": "Leonardo Luiz",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.0.6",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "jsonwebtoken": "^5.4.1",
+    "method-override": "^2.3.5",
+    "mongoose": "^4.2.9",
+    "morgan": "^1.6.1"
+  },
+  "devDependencies": {
+    "debug": "^2.2.0",
+    "dotenv": "^1.2.0"
+  }
+}
